@@ -4,6 +4,25 @@ import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { RsvpStatus as PrismaRsvpStatus } from "@/app/generated/prisma/enums";
+
+function countByStatus(rsvps: { status: PrismaRsvpStatus }[]) {
+  let goingCount = 0;
+  let maybeCount = 0;
+  let notGoingCount = 0;
+
+  for (const r of rsvps) {
+    if (r.status === "going") goingCount += 1;
+    else if (r.status === "maybe") maybeCount += 1;
+    else if (r.status === "not_going") notGoingCount += 1;
+  }
+
+  return {
+    goingCount,
+    maybeCount,
+    notGoingCount,
+  };
+}
 
 export async function DashboardContent({ userId }: { userId: string }) {
   const rows = await prisma.event.findMany({
@@ -23,6 +42,7 @@ export async function DashboardContent({ userId }: { userId: string }) {
     title: event.title,
     eventDate: event.eventDate ? event.eventDate.toISOString() : null,
     location: event.location,
+    ...countByStatus(event.rsvps),
   }));
 
   return (
@@ -65,9 +85,15 @@ export async function DashboardContent({ userId }: { userId: string }) {
                 </div>
 
                 <div className="flex flex-wrap gap-2 text-xs">
-                  <Badge variant={"secondary"} />
-                  <Badge variant={"secondary"} />
-                  <Badge variant={"secondary"} />
+                  <Badge variant={"secondary"}>
+                    Esta indo: {event.goingCount}
+                  </Badge>
+                  <Badge variant={"secondary"}>
+                    Talvez va: {event.maybeCount}
+                  </Badge>
+                  <Badge variant={"secondary"}>
+                    Nao esta indo: {event.notGoingCount}
+                  </Badge>
                 </div>
                 <p>
                   {event.eventDate
