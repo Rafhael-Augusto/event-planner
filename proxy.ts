@@ -8,7 +8,6 @@ function isServerActionPost(request: NextRequest) {
 }
 
 export default async function proxy(request: NextRequest) {
-  // deixa Server Actions passarem
   if (isServerActionPost(request)) {
     return NextResponse.next();
   }
