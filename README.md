@@ -99,7 +99,7 @@ npm run dev
 Acesse:
 http://localhost:3000
 
-## 🌐 Deploy
+## Deploy
 
 ```bash
 https://event-planner-omega-liard.vercel.app/
