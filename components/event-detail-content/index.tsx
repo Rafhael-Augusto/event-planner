@@ -68,9 +68,9 @@ export default async function EventDetailsContent({ userId, eventId }: Props) {
       </div>
 
       <div className="flex flex-wrap gap-2 text-xs">
-        <Badge variant={"secondary"}>Esta indo: {event.goingCount}</Badge>
+        <Badge>Esta indo: {event.goingCount}</Badge>
         <Badge variant={"secondary"}>Talvez va: {event.maybeCount}</Badge>
-        <Badge variant={"secondary"}>Nao vai: {event.notGoingCount}</Badge>
+        <Badge variant={"outline"}>Nao vai: {event.notGoingCount}</Badge>
       </div>
     </div>
   );
