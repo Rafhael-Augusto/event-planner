@@ -50,10 +50,10 @@ export async function DashboardContent({ userId }: { userId: string }) {
       <div className="flex flex-wrap items-center justify-around gap-3">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">
-            Seus Eventos
+            Seus eventos
           </h1>
           <p className="text-sm text-muted-foreground">
-            Track attendee responses and manage invite links.
+            Acompanhe as respostas dos participantes e gerencie seus convites.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export async function DashboardContent({ userId }: { userId: string }) {
           </CardHeader>
 
           <CardContent className="text-sm text-muted-foreground">
-            <p>Crie o seu primeiro evento pra comecar a coletar RSVPs.</p>
+            <p>Crie seu primeiro evento para começar a coletar confirmações.</p>
           </CardContent>
         </Card>
       ) : (
@@ -85,18 +85,18 @@ export async function DashboardContent({ userId }: { userId: string }) {
                 </div>
 
                 <div className="flex flex-wrap gap-2 text-xs">
-                  <Badge>Esta indo: {event.goingCount}</Badge>
+                  <Badge>Vai: {event.goingCount}</Badge>
                   <Badge variant={"secondary"}>
-                    Talvez va: {event.maybeCount}
+                    Talvez: {event.maybeCount}
                   </Badge>
                   <Badge variant={"outline"}>
-                    Nao vai: {event.notGoingCount}
+                    Não vai: {event.notGoingCount}
                   </Badge>
                 </div>
                 <p>
                   {event.eventDate
                     ? new Date(event.eventDate).toLocaleString()
-                    : "Evento sem data marcada"}
+                    : "Evento sem data definida"}
 
                   {event.location ? ` - ${event.location}` : ""}
                 </p>

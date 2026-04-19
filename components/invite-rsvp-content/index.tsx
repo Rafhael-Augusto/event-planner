@@ -62,7 +62,7 @@ export async function InviteRsvpContent({ token, submitted }: Props) {
           <p>
             {event.eventDate
               ? new Date(event.eventDate).toLocaleString()
-              : "Evento sem data marcada"}
+              : "Evento sem data definida"}
 
             {event.location ? ` - ${event.location}` : ""}
           </p>
@@ -75,7 +75,7 @@ export async function InviteRsvpContent({ token, submitted }: Props) {
         <CardContent>
           {submitted ? (
             <p className="mb-4 rounded-md border border-slate-700 p-4">
-              Obrigado. Seu RSVP foi salvo ( ou atualizado ).
+              Obrigado. Sua resposta foi registrada (ou atualizada).
             </p>
           ) : null}
 
@@ -87,16 +87,17 @@ export async function InviteRsvpContent({ token, submitted }: Props) {
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email">E-mail</FieldLabel>
                 <Input
                   id="email"
                   name="email"
                   type="email"
                   required
-                  placeholder="Seu email"
+                  placeholder="Seu e-mail"
                 />
               </Field>
-              <FieldLabel htmlFor="status">Attendance</FieldLabel>
+
+              <FieldLabel htmlFor="status">Confirmação</FieldLabel>
 
               <Field>
                 <Select defaultValue="going" required name="status">
@@ -106,16 +107,16 @@ export async function InviteRsvpContent({ token, submitted }: Props) {
 
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value="going">Indo</SelectItem>
+                      <SelectItem value="going">Vou</SelectItem>
                       <SelectItem value="maybe">Talvez</SelectItem>
-                      <SelectItem value="not_going">Nao irei</SelectItem>
+                      <SelectItem value="not_going">Não vou</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </Field>
 
               <Field orientation={"horizontal"}>
-                <Button type="submit">Enviar RSVP</Button>
+                <Button type="submit">Enviar resposta</Button>
               </Field>
             </FieldGroup>
           </form>

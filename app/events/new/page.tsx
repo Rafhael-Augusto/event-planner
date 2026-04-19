@@ -25,17 +25,17 @@ export default async function NewEventPage() {
           <form action={createEventAction}>
             <FieldGroup>
               <FieldSet>
-                <FieldLabel htmlFor="title">Titulo</FieldLabel>
+                <FieldLabel htmlFor="title">Título</FieldLabel>
                 <Input
                   id="title"
                   name="title"
                   required
-                  placeholder="Team dinner..."
+                  placeholder="Jantar da equipe..."
                 />
               </FieldSet>
 
               <FieldSet>
-                <FieldLabel htmlFor="description">Descricao</FieldLabel>
+                <FieldLabel htmlFor="description">Descrição</FieldLabel>
                 <Textarea
                   id="description"
                   name="description"
@@ -45,19 +45,19 @@ export default async function NewEventPage() {
               </FieldSet>
 
               <FieldSet>
-                <FieldLabel htmlFor="location">Localizacao</FieldLabel>
+                <FieldLabel htmlFor="location">Localização</FieldLabel>
                 <Input
                   id="location"
                   name="location"
-                  placeholder="Localizacao opcional"
+                  placeholder="Localização opcional"
                 />
               </FieldSet>
 
               <FieldSet>
-                <FieldLabel htmlFor="eventDate">Dia e hora</FieldLabel>
+                <FieldLabel htmlFor="eventDate">Data e hora</FieldLabel>
                 <Input id="eventDate" name="eventDate" type="datetime-local" />
                 <FieldDescription>
-                  Opcional, voce pode adicionar depois.
+                  Opcional, você pode adicionar depois.
                 </FieldDescription>
               </FieldSet>
 

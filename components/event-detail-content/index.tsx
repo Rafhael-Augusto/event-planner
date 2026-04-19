@@ -88,7 +88,7 @@ export default async function EventDetailsContent({ userId, eventId }: Props) {
           <p>
             {event.eventDate
               ? new Date(event.eventDate).toLocaleString()
-              : "Evento sem data marcada"}
+              : "Evento sem data definida"}
 
             {event.location ? ` - ${event.location}` : ""}
           </p>
@@ -106,17 +106,17 @@ export default async function EventDetailsContent({ userId, eventId }: Props) {
       </div>
 
       <div className="flex flex-wrap gap-2 text-xs">
-        <Badge>Esta indo: {event.goingCount}</Badge>
-        <Badge variant={"secondary"}>Talvez va: {event.maybeCount}</Badge>
-        <Badge variant={"outline"}>Nao vai: {event.notGoingCount}</Badge>
+        <Badge>Vai: {event.goingCount}</Badge>
+        <Badge variant={"secondary"}>Talvez: {event.maybeCount}</Badge>
+        <Badge variant={"outline"}>Não vai: {event.notGoingCount}</Badge>
       </div>
 
       <Card>
         <CardHeader>Link de convite</CardHeader>
         <CardContent className="space-y-3">
           <p className="text-sm text-muted-foreground">
-            Compartilhe este link com convidados para confirmar presenca sem
-            criar uma conta.
+            Compartilhe este link com convidados para confirmar presença sem
+            precisar criar uma conta.
           </p>
 
           {inviteUrl ? (
@@ -130,14 +130,14 @@ export default async function EventDetailsContent({ userId, eventId }: Props) {
           )}
 
           <form action={createInviteActionForEvent}>
-            <Button type="submit">Gerar Link</Button>
+            <Button type="submit">Gerar link</Button>
           </form>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle>Attendees</CardTitle>
+          <CardTitle>Participantes</CardTitle>
         </CardHeader>
 
         <CardContent>
@@ -162,10 +162,10 @@ export default async function EventDetailsContent({ userId, eventId }: Props) {
                     <TableCell>
                       <Badge variant={"secondary"}>
                         {rsvp.status === "not_going"
-                          ? "Nao indo"
+                          ? "Não vai"
                           : rsvp.status === "going"
-                            ? "indo"
-                            : "talvez"}
+                            ? "Vai"
+                            : "Talvez"}
                       </Badge>
                     </TableCell>
                     <TableCell>
