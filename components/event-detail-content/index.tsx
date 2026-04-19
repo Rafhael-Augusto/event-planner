@@ -4,6 +4,8 @@ import { countByStatus } from "../dashboard-content";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import { Card, CardContent, CardHeader } from "../ui/card";
+import { createInviteLinkAction } from "@/lib/actions/events";
 
 type Props = {
   userId: string;
@@ -40,6 +42,15 @@ export default async function EventDetailsContent({ userId, eventId }: Props) {
     ...counts,
   };
 
+  const createInviteActionForEvent = createInviteLinkAction.bind(
+    null,
+    event.id,
+  );
+
+  const inviteUrl = event.inviteToken
+    ? `${process.env.NEXT_PUBLIC_APP_URL ?? ""}/invite/${event.inviteToken}`
+    : null;
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between">
@@ -72,6 +83,30 @@ export default async function EventDetailsContent({ userId, eventId }: Props) {
         <Badge variant={"secondary"}>Talvez va: {event.maybeCount}</Badge>
         <Badge variant={"outline"}>Nao vai: {event.notGoingCount}</Badge>
       </div>
+
+      <Card>
+        <CardHeader>Link de convite</CardHeader>
+        <CardContent className="space-y-3">
+          <p className="text-sm text-muted-foreground">
+            Compartilhe este link com convidados para confirmar presenca sem
+            criar uma conta.
+          </p>
+
+          {inviteUrl ? (
+            <div className="rounded-md border border-slate-700 bg-slate-900/90 p-3 text-sm">
+              {inviteUrl}
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              Nenhum link de convite gerado.
+            </p>
+          )}
+
+          <form action={createInviteActionForEvent}>
+            <Button type="submit">Gerar Link</Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
