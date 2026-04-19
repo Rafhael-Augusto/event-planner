@@ -35,7 +35,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-muted-foreground">
-        <NeonAuthUIProvider authClient={authClient as any}>
+        <NeonAuthUIProvider authClient={authClient as any} defaultTheme="dark">
           <header className="border-b border-slate-700 bg-slate-900/90 backdrop-blur-sm">
             <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
               <Link href={"/"} className="text-sm font-semibold tracking-wide">
