@@ -75,7 +75,7 @@ export async function DashboardContent({ userId }: { userId: string }) {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 md:grip-cols-2">
+        <div className="grid gap-4 md:grid-cols-2">
           {events.map((event) => (
             <Card key={event.id}>
               <CardHeader className="space-y-3">
