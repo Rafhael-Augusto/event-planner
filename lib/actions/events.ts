@@ -68,21 +68,17 @@ export async function createEventAction(formData: FormData) {
 
   const input = parseCreateEvent(formData);
 
-  try {
-    const created = await prisma.event.create({
-      data: {
-        ownerUserId: userId,
-        title: input.title,
-        description: input.description,
-        location: input.location,
-        eventDate: input.eventDate ? new Date(input.eventDate) : null,
-      },
-    });
+  const created = await prisma.event.create({
+    data: {
+      ownerUserId: userId,
+      title: input.title,
+      description: input.description,
+      location: input.location,
+      eventDate: input.eventDate ? new Date(input.eventDate) : null,
+    },
+  });
 
-    redirect(`/events/${created.id}`);
-  } catch (err) {
-    console.error(err);
-  }
+  redirect(`/events/${created.id}`);
 }
 
 export async function createInviteLinkAction(eventId: string) {
