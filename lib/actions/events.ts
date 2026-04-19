@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { getSession } from "../auth/server";
 import prisma from "../prisma";
 
+import { RsvpStatus } from "@/app/generated/prisma/enums";
+
 function parseCreateEvent(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
 
@@ -20,6 +22,38 @@ function parseCreateEvent(formData: FormData) {
     description,
     location,
     eventDate,
+  };
+}
+
+const RSVP_STATUSES = ["going", "maybe", "not_going"] as const;
+
+function isRsvpStatus(s: string): s is RsvpStatus {
+  return (RSVP_STATUSES as readonly string[]).includes(s);
+}
+
+function parseRsvp(formData: FormData) {
+  const name = String(formData.get("name") ?? "").trim();
+
+  if (name.length < 2 || name.length > 120) {
+    throw new Error("Nome deve ter entre 2 e 120 caracteres.");
+  }
+
+  const email = String(formData.get("email") ?? "").trim();
+
+  if (email.length < 3 || email.length > 320 || !email.includes("@")) {
+    throw new Error("Por favor coloque um email valido.");
+  }
+
+  const status = String(formData.get("status") ?? "").trim();
+
+  if (!isRsvpStatus(status)) {
+    throw new Error("Status invalido.");
+  }
+
+  return {
+    name,
+    email,
+    status,
   };
 }
 
@@ -83,4 +117,56 @@ export async function createInviteLinkAction(eventId: string) {
     create: { eventId, token },
     update: { token },
   });
+}
+
+export async function submitOrUpdateRsvpAction(
+  token: string,
+  formData: FormData,
+) {
+  const input = parseRsvp(formData);
+
+  const invite = await prisma.eventInvite.findFirst({
+    where: { token },
+    select: {
+      id: true,
+      event: {
+        select: {
+          id: true,
+        },
+      },
+    },
+  });
+
+  if (!invite) {
+    throw new Error("Link de convite invalido.");
+  }
+
+  const eventId = invite.event.id;
+  const emailNormalized = input.email.toLowerCase();
+
+  await prisma.eventRsvp.upsert({
+    where: {
+      eventId_emailNormalized: {
+        eventId,
+        emailNormalized,
+      },
+    },
+
+    create: {
+      eventId,
+      inviteId: invite.id,
+      name: input.name,
+      email: input.email,
+      emailNormalized,
+      status: input.status as RsvpStatus,
+    },
+
+    update: {
+      name: input.name,
+      status: input.status as RsvpStatus,
+      respondedAt: new Date(),
+    },
+  });
+
+  redirect(`/invite/${token}?submitted=1`);
 }
