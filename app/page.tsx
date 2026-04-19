@@ -28,14 +28,14 @@ export default async function HomePage() {
           {session.data?.user.id ? (
             <>
               <Button asChild>
-                <Link href="/events/create" className="text-lg px-8 py-3">
+                <Link href="/events/new" className="text-lg px-8 py-3">
                   Criar Evento
                 </Link>
               </Button>
 
               <Button asChild variant={"secondary"}>
                 <Link
-                  href="/events"
+                  href="/dashboard"
                   className="btn-secondary text-lg px-8 py-3"
                 >
                   Explorar Eventos
