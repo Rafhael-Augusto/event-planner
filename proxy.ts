@@ -4,11 +4,11 @@ function isServerActionPost(request: NextRequest) {
   if (request.method !== "POST") return false;
 
   const h = request.headers;
-
   return Boolean(h.get("Next-Action") ?? h.get("next-action"));
 }
 
 export default async function proxy(request: NextRequest) {
+  // deixa Server Actions passarem
   if (isServerActionPost(request)) {
     return NextResponse.next();
   }
@@ -17,3 +17,7 @@ export default async function proxy(request: NextRequest) {
 
   return auth.middleware({ loginUrl: "/auth/sign-in" })(request);
 }
+
+export const config = {
+  matcher: ["/((?!_next|.*\\..*).*)"],
+};
