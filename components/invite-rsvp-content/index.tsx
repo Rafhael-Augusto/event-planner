@@ -1,10 +1,13 @@
-import { Button } from "@/components/ui/button";
-import prisma from "@/lib/prisma";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Badge } from "../ui/badge";
 import { notFound } from "next/navigation";
-import { Field, FieldGroup, FieldLabel } from "../ui/field";
-import { Input } from "../ui/input";
+
+import { submitOrUpdateRsvpAction } from "@/lib/actions/events";
+import prisma from "@/lib/prisma";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -12,8 +15,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import { submitOrUpdateRsvpAction } from "@/lib/actions/events";
+} from "@/components/ui/select";
 
 type Props = {
   token: string;

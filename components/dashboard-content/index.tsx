@@ -1,10 +1,12 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Badge } from "../ui/badge";
+
 import { RsvpStatus as PrismaRsvpStatus } from "@/app/generated/prisma/enums";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export function countByStatus(rsvps: { status: PrismaRsvpStatus }[]) {
   let goingCount = 0;

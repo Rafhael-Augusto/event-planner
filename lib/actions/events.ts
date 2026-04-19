@@ -1,8 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { getSession } from "../auth/server";
-import prisma from "../prisma";
+
+import { getSession } from "@/lib/auth/server";
+import prisma from "@/lib/prisma";
 
 import { RsvpStatus } from "@/app/generated/prisma/enums";
 

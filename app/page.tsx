@@ -1,11 +1,14 @@
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
 import { getSession } from "@/lib/auth/server";
+
 import {
   ChartNoAxesColumnIncreasingIcon,
   PlusIcon,
   UsersIcon,
 } from "lucide-react";
-import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 
 export default async function HomePage() {
   const session = await getSession();

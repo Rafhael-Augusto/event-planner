@@ -1,11 +1,13 @@
-import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import { countByStatus } from "../dashboard-content";
-import { Button } from "../ui/button";
+
 import Link from "next/link";
-import { Badge } from "../ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+
 import { createInviteLinkAction } from "@/lib/actions/events";
+import prisma from "@/lib/prisma";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -13,7 +15,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "@/components/ui/table";
+
+import { countByStatus } from "@/components/dashboard-content";
 
 type Props = {
   userId: string;

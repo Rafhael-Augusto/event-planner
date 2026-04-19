@@ -1,5 +1,11 @@
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+import { createEventAction } from "@/lib/actions/events";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Field,
   FieldDescription,
@@ -7,11 +13,6 @@ import {
   FieldLabel,
   FieldSet,
 } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-
-import { Textarea } from "@/components/ui/textarea";
-import { createEventAction } from "@/lib/actions/events";
-import Link from "next/link";
 
 export default async function NewEventPage() {
   return (
