@@ -101,6 +101,4 @@ http://localhost:3000
 
 ## Deploy
 
-```bash
 https://event-planner-omega-liard.vercel.app/
-```
