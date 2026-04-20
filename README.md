@@ -1,104 +1,73 @@
-# 🎉 Event Planner
+### Event Planner
 
-Aplicação fullstack para criação e gerenciamento de eventos, permitindo compartilhar convites por link e coletar confirmações de presença sem exigir cadastro dos convidados.
+Full-stack application for event creation and management, enabling users to share invitation links and collect RSVPs without requiring guest registration.
 
-## ✨ Funcionalidades
+The system is designed to provide a frictionless experience for both organizers and guests, using a fully link-based interaction model.
 
-### 🔐 Autenticação
-
-* Registro e login de usuários
-* Gerenciado com Neon Auth
-
-### 📅 Eventos
-
-* Criação de eventos
-* Geração de link único para compartilhamento
-* Acesso público ao evento sem necessidade de conta
-
-### 📩 Confirmação de presença (RSVP)
-
-* Convidados informam:
-
-  * Nome
-  * Email
-  * Status:
-
-    * Vai
-    * Talvez
-    * Não vai
-
-### 📊 Dashboard
-
-* Listagem de eventos criados
-* Contagem de respostas:
-
-  * Confirmados
-  * Talvez
-  * Recusados
-* Visualização detalhada dos participantes:
-
-  * Nome
-  * Email
-  * Status
-
-## 🛠️ Tecnologias
-
-### Frontend
-
+## Features
+* Authentication
+* User registration and login
+* Managed with Neon Auth
+* Events
+* Event creation and management
+* Generation of unique shareable links
+* Public access to event pages without requiring an account
+* RSVP
+  
+## Tech Stack
+* Frontend
 * Next.js
 * React
 * TailwindCSS
 * shadcn/ui
 * Radix UI
-
-### Backend
-
-* Next.js (Server Actions / API)
+  
+## Backend
+* Next.js (Server Actions / API Routes)
 * Prisma ORM
 * PostgreSQL (Neon)
-
-### Outros
-
+  
+## Other
 * Neon Auth
 * TypeScript
-
-## 📦 Instalação
-
+  
+## Installation
 ```bash
 git clone git@github.com:Rafhael-Augusto/event-planner.git
+
 cd event-planner
+
 npm install
 ```
 
-## ⚙️ Configuração
 
-Crie um arquivo `.env` na raiz do projeto:
+## Configuration
 
-```env
-DATABASE_URL="database-url"
+* Create a .env file in the root of the project:
 
-NEON_AUTH_BASE_URL="neon-auth-url"
-NEON_AUTH_COOKIE_SECRET="cookie-secret"
+```bash
+DATABASE_URL="your-database-url"
+
+NEON_AUTH_BASE_URL="your-neon-auth-url"
+NEON_AUTH_COOKIE_SECRET="your-cookie-secret"
 
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-## 🧱 Banco de dados
-
+## Database
 ```bash
 npx prisma generate
 npx prisma migrate dev
 ```
 
-## 🚀 Rodando o projeto
-
+## Running the project
 ```bash
 npm run dev
 ```
 
-Acesse:
-http://localhost:3000
+* Access the application at:
+  http://localhost:3000/
 
-## Deploy
+## Deployment
 
 https://event-planner-omega-liard.vercel.app/
