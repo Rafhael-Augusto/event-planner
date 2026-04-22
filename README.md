@@ -14,7 +14,6 @@ The system is designed to provide a frictionless experience for both organizers 
 * Public access to event pages without requiring an account
 * RSVP
   
-### Tech Stack
 ## Frontend
 * Next.js
 * React
